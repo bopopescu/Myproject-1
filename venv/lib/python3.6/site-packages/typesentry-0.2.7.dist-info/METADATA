@@ -1,0 +1,22 @@
+Metadata-Version: 2.0
+Name: typesentry
+Version: 0.2.7
+Summary: Run-time type checking of arguments passed to functions
+Home-page: https://github.com/h2oai/typesentry.git
+Author: Pasha Stetsenko
+Author-email: pasha@h2o.ai
+License: Apache v2.0
+Keywords: types,typing,typecheck
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Utilities
+Requires-Dist: colorama (>=0.3)
+Requires-Dist: typesentry (==0.2.7)
+
+UNKNOWN
+
+
