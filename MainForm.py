@@ -10,29 +10,29 @@ import mysql.connector
 
 class MainForm:
 
-    def __init__(self, master):
+    def __init__(self, main):
 
-        self.master = master
-        self.master.geometry('200x200')
-        self.master.title('MainForm')
+        self.main = main
+        self.main.geometry('200x200')
+        self.main.title('MainForm')
 
-        self.button1 = Button(self.master, text="Load DataSet", command = self.gotoLoadDataset).place(x=50, y=5)
-        self.button2 = Button(self.master, text="Unsupervised",  command = self.gotoUnsupervised).place(x=50, y=50)
-        self.button3 = Button(self.master, text="Supervised",  command = self.gotoSupervised).place(x=50, y=100)
+        self.button1 = Button(self.main, text="Load DataSet", command = self.gotoLoadDataset).place(x=50, y=5)
+        self.button2 = Button(self.main, text="Unsupervised",  command = self.gotoUnsupervised).place(x=50, y=50)
+        self.button3 = Button(self.main, text="Supervised",  command = self.gotoSupervised).place(x=50, y=100)
 
     def gotoLoadDataset(self):
 
-        root2 = Toplevel(self.master)
+        root2 = Toplevel(self.main)
         loaddataset = LoadDataset(root2)
 
     def gotoUnsupervised(self):
 
-        root3 = Toplevel(self.master)
+        root3 = Toplevel(self.main)
         unspervised = Unsupervised(root3)
 
     def gotoSupervised(self):
 
-        root4 = Toplevel(self.master)
+        root4 = Toplevel(self.main)
         supervised = Supervised(root4)
 
 
@@ -40,11 +40,11 @@ class MainForm:
 
 class LoadDataset():
 
-    def __init__(self, master):
+    def __init__(self, main):
 
-        self.master = master
-        self.master.geometry('400x100')
-        self.master.title('Load Dataset')
+        self.main = main
+        self.main.geometry('400x100')
+        self.main.title('Load Dataset')
 
         self.fname = "Unknown"
         self.lines = "Unknown"
@@ -55,15 +55,15 @@ class LoadDataset():
         except:
             print("Can't connect DB")
 
-        self.label1 = Label(self.master, text="Select DataSet:").grid(row=0, column=1)
-        self.button1 = Button(self.master, text="Browse", command=self.gotoBrowse).grid(row=0, column=4)
-        self.button2 = Button(self.master, text="Load File", command=self.gotoLoadFile).grid(row=1, column=4)
-        self.button3 = Button(self.master, text="Remove Stop words", command=self.gotoRemoveStopwords).grid(row=2, column=4)
+        self.label1 = Label(self.main, text="Select DataSet:").grid(row=0, column=1)
+        self.button1 = Button(self.main, text="Browse", command=self.gotoBrowse).grid(row=0, column=4)
+        self.button2 = Button(self.main, text="Load File", command=self.gotoLoadFile).grid(row=1, column=4)
+        self.button3 = Button(self.main, text="Remove Stop words", command=self.gotoRemoveStopwords).grid(row=2, column=4)
 
 
     def gotoBrowse(self):
         self.fname = filedialog.askopenfilename(initialdir = "/home/ubuntuneedhi/Documents", title = "Select file", filetypes =(("text file","*.txt"),("all files","*.*")))
-        self.label2 = Label(self.master, text=self.fname).grid(row=0, column=7)
+        self.label2 = Label(self.main, text=self.fname).grid(row=0, column=7)
 
     def gotoLoadFile(self):
 
@@ -146,11 +146,11 @@ class LoadDataset():
 
 class Unsupervised():
 
-    def __init__(self, master):
+    def __init__(self, main):
 
-        self.master = master
-        self.master.title('Unsupervised')
-        self.master.geometry('700x300')
+        self.main = main
+        self.main.title('Unsupervised')
+        self.main.geometry('700x300')
 
         try:
             self.con = mysql.connector.connect(user='root', password='r00tp@ss', host='127.0.0.1',
@@ -166,14 +166,14 @@ class Unsupervised():
         self.final = pd.DataFrame(columns=['Review Text'])
         self.seedf = "Unkonwn"
         self.cmbcategory = StringVar()
-        self.button1 = Button(self.master, text="Initiate Matrix", command = self.gotoInitiate).place(x=5, y=5)
-        self.button2 = Button(self.master, text="Compute Matrix", command = self.gotoCompute).place(x=150, y=5)
-        self.label1 = Label(self.master, text="Select Over All Seed Word:").place(x=5, y=50)
-        self.button3 = Button(self.master, text="Browse", command = self.gotoBrowseSeedwords).place(x=190, y=50)
-        self.button4 = Button(self.master, text="Load", command = self.gotoLoadSeedWords).place(x=190, y=100)
-        self.label3 = Label(self.master, text="Choose Category:").place(x=5, y=140)
-        self.comboExample = ttk.Combobox(self.master, values=["food", "service", "place", "price"], textvariable = self.cmbcategory).place(x=150, y=140)
-        self.button5 = ttk.Button(self.master, text="submit", command=self.gotoGraph).place(x=350, y=140)
+        self.button1 = Button(self.main, text="Initiate Matrix", command = self.gotoInitiate).place(x=5, y=5)
+        self.button2 = Button(self.main, text="Compute Matrix", command = self.gotoCompute).place(x=150, y=5)
+        self.label1 = Label(self.main, text="Select Over All Seed Word:").place(x=5, y=50)
+        self.button3 = Button(self.main, text="Browse", command = self.gotoBrowseSeedwords).place(x=190, y=50)
+        self.button4 = Button(self.main, text="Load", command = self.gotoLoadSeedWords).place(x=190, y=100)
+        self.label3 = Label(self.main, text="Choose Category:").place(x=5, y=140)
+        self.comboExample = ttk.Combobox(self.main, values=["food", "service", "place", "price"], textvariable = self.cmbcategory).place(x=150, y=140)
+        self.button5 = ttk.Button(self.main, text="submit", command=self.gotoGraph).place(x=350, y=140)
 
 
 
@@ -229,7 +229,7 @@ class Unsupervised():
     def gotoBrowseSeedwords(self):
         self.seedf = filedialog.askopenfilename(initialdir="/home/ubuntuneedhi/Documents", title="Select file",
                                                     filetypes=(("text file", "*.txt"), ("all files", "*.*")))
-        self.label2 = Label(self.master, text=self.seedf).place(x=270, y=50)
+        self.label2 = Label(self.main, text=self.seedf).place(x=270, y=50)
 
     def gotoLoadSeedWords(self):
 
@@ -362,14 +362,14 @@ class Unsupervised():
 
 class Supervised():
 
-    def __init__(self, master):
+    def __init__(self, main):
 
-        self.master = master
-        self.master.title('Supervised')
+        self.main = main
+        self.main.title('Supervised')
 
-        self.label1 = Label(self.master, text="Select DataSet:").grid(row=0, column=1)
-        self.entry = Entry(self.master).grid(row=0, column=4)
-        self.button1 = Button(self.master, text="Browse").grid(row=0, column=7)
+        self.label1 = Label(self.main, text="Select DataSet:").grid(row=0, column=1)
+        self.entry = Entry(self.main).grid(row=0, column=4)
+        self.button1 = Button(self.main, text="Browse").grid(row=0, column=7)
 
 def main():
     root = Tk()
